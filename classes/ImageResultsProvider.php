@@ -5,13 +5,10 @@ class ImageResultsProvider {
 	private $con;
 
 	function __construct($con) {
-
 		$this->con = $con;
-
 	}
 
 	public function getNumResults($term) {
-
 		$query = $this->con->prepare("SELECT COUNT(*) AS total
 										FROM images
 										WHERE (title LIKE :term 
@@ -24,7 +21,6 @@ class ImageResultsProvider {
 
 		$row = $query->fetch(PDO::FETCH_ASSOC);
 		return $row['total'];
-
 	}
 
 	public function getResultsHtml($page, $pageSize, $term) {
@@ -68,34 +64,22 @@ class ImageResultsProvider {
 			}
 
 			$resultsHtml .= "<div class='gridItem image$count'>
-
-								<a href='$imageUrl' data-fancybox data-caption='$displayText' data-siteurl='$siteUrl'>
-
-									<script>
-										$(document).ready(function() {
-											loadImage(\"$imageUrl\", \"image$count\");
-										});
-									</script>
-
-
-									<span class='details'>$displayText</span>
-								</a>
-
-								
-
-							</div>";
-			
+									<a href='$imageUrl' data-fancybox data-caption='$displayText' data-siteurl='$siteUrl'>
+										<script>
+											$(document).ready(function() {
+												loadImage(\"$imageUrl\", \"image$count\");
+											});
+										</script>
+										<span class='details'>$displayText</span>
+									</a>
+								</div>";
 
 		}
 
 		$resultsHtml .= "</div>";
 
 		return $resultsHtml;
-
 	}
-
-
 }
-
 
 ?>

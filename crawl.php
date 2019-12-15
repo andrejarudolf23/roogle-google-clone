@@ -138,7 +138,6 @@ function getDetails($url) {
 
 	}
 
-
 }
 
 function followLinks($url) {
